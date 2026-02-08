@@ -1,7 +1,10 @@
 #include <iostream>
 #include <string>
 using namespace std;
-void calculator(){
+
+void addHistory(int ansArr[],int &ansCount,int ans);
+void printHistory(int ansArr[],int ansCount);
+void calculator(int ansArr[],int &ansCount){
      string Num1;
      string Num2;
      char Oper;
@@ -59,17 +62,36 @@ void calculator(){
               ans=(n1 / n2)*100;
              break;
              default:
-             cout<<"invalid operator";
-             break;
+             cout<<"invalid operator"<<endl;
+             continue;
          }
-         
+         addHistory(ansArr,ansCount,ans);
+         cout<<"your answer is: ";
          cout<<ans<<endl;
+         string choice;
+         cout<<"do you want to print history?"<<endl;
+         cin>>choice;
+         cin.ignore();
+         if(choice == "yes" ){
+             printHistory(ansArr,ansCount);
+         }
      }
 }
-    
+ void addHistory(int ansArr[],int &ansCount,int ans){
+     ansArr[ansCount]=ans;
+     ansCount++;
+ }
+ void printHistory(int ansArr[],int ansCount){
+     for(int i=0;i<ansCount;i++){
+         cout<<i+1<<" "<<ansArr[i]<<endl;
+     }
+ }
+ 
 
 
 int main(){
-    calculator();
+    int ansArr[100];
+    int ansCount=0;
+    calculator(ansArr,ansCount);
     return 0;
 }
