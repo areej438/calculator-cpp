@@ -56,9 +56,18 @@ void calculator(int ansArr[],int &ansCount){
               ans=n1 * n2;
              break;
              case '/':
+             if(n2== 0){
+                 cout<<"denominator cannot be zero"<<endl;
+                 continue;
+             }
               ans=n1 / n2;
+              
              break;
              case '%':
+             if(n2== 0){
+                 cout<<"denominator cannot be zero"<<endl;
+                 continue;
+             }
               ans=(n1 / n2)*100;
              break;
              default:
@@ -72,6 +81,9 @@ void calculator(int ansArr[],int &ansCount){
          cout<<"do you want to print history?"<<endl;
          cin>>choice;
          cin.ignore();
+         for(char &c : choice){
+             c = tolower(c);
+         }
          if(choice == "yes" ){
              printHistory(ansArr,ansCount);
          }
@@ -83,7 +95,7 @@ void calculator(int ansArr[],int &ansCount){
  }
  void printHistory(int ansArr[],int ansCount){
      for(int i=0;i<ansCount;i++){
-         cout<<i+1<<" "<<ansArr[i]<<endl;
+         cout<<"at "<<i+1<<" index :"<<" "<<ansArr[i]<<endl;
      }
  }
  
